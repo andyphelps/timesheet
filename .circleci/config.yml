@@ -1,0 +1,14 @@
+---
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/timesheet
+
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - checkout
+      - run: mvn clean package
+      - store_artifacts: target/timesheet-1.0-SNAPSHOT.jar
