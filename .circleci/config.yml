@@ -10,6 +10,13 @@ jobs:
 
     steps:
       - checkout
-      - run: mvn clean package
+      - restore_cache:
+          key: timesheet-{{ checksum "pom.xml" }}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: timesheet-{{ checksum "pom.xml" }}
+      - run: mvn package
       - store_artifacts:
           path: target/timesheet-1.0-SNAPSHOT.jar
