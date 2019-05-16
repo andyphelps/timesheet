@@ -11,4 +11,5 @@ jobs:
     steps:
       - checkout
       - run: mvn clean package
-      - store_artifacts: target/timesheet-1.0-SNAPSHOT.jar
+      - store_artifacts:
+          path: target/timesheet-1.0-SNAPSHOT.jar
